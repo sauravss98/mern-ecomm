@@ -4,6 +4,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HeaderComponent from "./components/HeaderComponent.js";
 import FooterComponent from "./components/FooterComponent.js";
 
+//user components
+import RoutesWithUserChatComponent from "./components/user/RoutesWithUserChatComponent.js";
+
 import HomePage from "./pages/HomePage.js";
 import ProductDetailsPage from "./pages/ProductDetailsPage.js";
 import ProductListPage from "./pages/ProductListPage.js";
@@ -30,13 +33,16 @@ function App() {
     <BrowserRouter>
       <HeaderComponent />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/product-list" element={<ProductListPage />} />
-        <Route path="/product-details/:id" element={<ProductDetailsPage />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="*" element="404 page does not exist" />
+        <Route element={<RoutesWithUserChatComponent />}>
+          {/* publicly available routes */}
+          <Route path="/" element={<HomePage />} />
+          <Route path="/product-list" element={<ProductListPage />} />
+          <Route path="/product-details/:id" element={<ProductDetailsPage />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="*" element="404 page does not exist" />
+        </Route>
         // user Routes
         <Route element={<ProtectedRoutesComponent admin={false} />}>
           <Route path="/user" element={<UserProfilePage />} />
