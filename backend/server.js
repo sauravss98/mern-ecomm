@@ -4,14 +4,13 @@ const port = 3000;
 
 const apiRoutes = require("./routes/apiRoutes");
 
-app.get("/", (req, res) => {
-  console.log("sync code");
-  throw new Error("some error occured");
-  res.json({ message: "Api Running" });
+app.get("/", async (req, res, next) => {
+  res.json({ message: "api running" });
 });
 
 // mongodb connection
 const connectDB = require("./config/db");
+const Product = require("./models/ProductModel");
 connectDB();
 
 // app.get("/a", (req, res, next) => {
